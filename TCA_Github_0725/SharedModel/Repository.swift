@@ -19,3 +19,14 @@ public extension Repository {
     self.login = item.owner.login
   }
 }
+
+public extension Repository {
+  init (from item: GetFavoriteReposResponseItem) {
+    self.id = item.id
+    self.name = item.fullName
+    self.avatarUrl = item.owner.avatarUrl
+    self.description = item.description
+    self.stars = item.stargazersCount
+    self.login = item.owner.login
+  }
+}
