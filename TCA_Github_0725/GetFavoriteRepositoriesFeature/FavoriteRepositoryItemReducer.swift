@@ -4,7 +4,6 @@ import Foundation
 
 @Reducer
 public struct FavoriteRepositoryItemReducer: Reducer {
-  // MARK: - State
   public struct State: Equatable, Identifiable {
     public var id: Int { repository.id }
     let repository: Repository

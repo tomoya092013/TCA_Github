@@ -38,11 +38,9 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
     case items(IdentifiedActionOf<RepositoryItemReducer>)
     case itemAppeared(id: Int)
     case searchReposResponse(Result<SearchReposResponse, Error>)
-    case getFavoriteReposResponse(Result<[GetFavoriteReposResponse], Error>)
     case path(StackAction<RepositoryDetailReducer.State, RepositoryDetailReducer.Action>)
     case textFieldFeature(SearchTextFieldReducer.Action)
     case searchRepos(query: String, page: Int)
-    case getFavoriteRepos
   }
   
   // MARK: - Dependencies
@@ -82,24 +80,6 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
         return .none
       case .textFieldFeature(_):
         return .none
-        
-      case let .getFavoriteReposResponse(.success(response)):
-        print(response)
-//        switch state.loadingState {
-//        case .refreshing:
-//          state.items = .init(response: response)
-//        case .loadingNext:
-//          let newItems = IdentifiedArrayOf(response: response)
-//          state.items.append(contentsOf: newItems)
-//        case .none:
-//          break
-//        }
-//        state.hasMorePage = response.totalCount > state.items.count
-//        state.loadingState = .none
-        return .none
-      case .getFavoriteReposResponse(.failure):
-        return .none
-        
       case let .searchReposResponse(.success(response)):
         switch state.loadingState {
         case .refreshing:
@@ -140,12 +120,6 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
         return .run { send in
           await send(.searchReposResponse(Result {
             try await githubClient.searchRepos(query: query, page: page)
-          }))
-        }
-      case .getFavoriteRepos:
-        return .run { send in
-          await send(.getFavoriteReposResponse(Result {
-            try await githubClient.getFavoriteRepos()
           }))
         }
       }

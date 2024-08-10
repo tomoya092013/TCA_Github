@@ -9,19 +9,18 @@ struct GetFavoriteRepositoriesView: View {
   }
   
   public var body: some View {
-    WithViewStore(store) { viewStore in
-      List {
-        ForEachStore(store.scope(
-          state: \.items,
-          action: GetFavoriteRepositoriesReducer.Action.items
-        )) { itemStore in
-          FavoriteRepositoryItemView(store: itemStore)
+    WithViewStore(store, observe: { $0 }) { viewStore in
+      NavigationView {
+        List {
+          ForEachStore(store.scope(state: \.items, action: \.items)) { itemStore in
+            FavoriteRepositoryItemView(store: itemStore)
+          }
         }
+        .navigationBarTitle(Text("お気に入りRepository"))
       }
       .onAppear {
         viewStore.send(.getFavoriteRepos)
       }
-      .navigationTitle("Favorite Repositories")
     }
   }
 }

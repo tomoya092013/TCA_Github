@@ -27,14 +27,6 @@ public struct SearchRepositoriesView: View {
         SearchTextFieldView(
           store: self.store.scope(state: \.textFieldFeature, action: SearchRepositoriesReducer.Action.textFieldFeature)
         )
-        
-        Button {
-          viewStore.send(.getFavoriteRepos)
-        } label: {
-          Text("お気に入り一覧へ")
-        }
-        .buttonStyle(.plain)
-        
         List {
           Toggle(isOn: viewStore.$showFavoritesOnly) {
             Text("Favorites Only")
