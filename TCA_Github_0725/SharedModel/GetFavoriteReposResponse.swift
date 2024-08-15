@@ -1,16 +1,16 @@
 import Foundation
 
-public typealias GetFavoriteReposResponse = [GetFavoriteReposResponseItem]
+typealias GetFavoriteReposResponse = [GetFavoriteReposResponseItem]
 
-public struct GetFavoriteReposResponseItem: Sendable, Decodable, Equatable {
-  public let id: Int
-  public let name: String
-  public let fullName: String
-  public let owner: Owner
-  public let description: String?
-  public let stargazersCount: Int
+struct GetFavoriteReposResponseItem: Sendable, Decodable, Equatable {
+  let id: Int
+  let name: String
+  let fullName: String
+  let owner: Owner
+  let description: String?
+  let stargazersCount: Int
   
-  public init(
+  init(
     id: Int,
     name: String,
     fullName: String,
@@ -36,11 +36,11 @@ public struct GetFavoriteReposResponseItem: Sendable, Decodable, Equatable {
   }
 }
 
-public struct Owner: Sendable, Decodable, Equatable {
-  public let login: String
-  public let avatarUrl: URL
+struct Owner: Sendable, Decodable, Equatable {
+  let login: String
+  let avatarUrl: URL
   
-  public init(login: String, avatarUrl: URL) {
+  init(login: String, avatarUrl: URL) {
     self.login = login
     self.avatarUrl = avatarUrl
   }

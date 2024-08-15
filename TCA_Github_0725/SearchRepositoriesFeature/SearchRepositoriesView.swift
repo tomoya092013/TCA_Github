@@ -1,7 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-public struct SearchRepositoriesView: View {
+struct SearchRepositoriesView: View {
   let store: StoreOf<SearchRepositoriesReducer>
   @State var editing: Bool = false
   @FocusState var focus:Bool
@@ -16,11 +16,11 @@ public struct SearchRepositoriesView: View {
     }
   }
   
-  public init(store: StoreOf<SearchRepositoriesReducer>) {
+  init(store: StoreOf<SearchRepositoriesReducer>) {
     self.store = store
   }
   
-  public var body: some View {
+  var body: some View {
     NavigationStackStore(store.scope(state: \.path, action: \.path)) {
       WithViewStore(store, observe: ViewState.init(store:)) { viewStore in
         

@@ -3,9 +3,9 @@ import Dependencies
 import Foundation
 
 @Reducer
-public struct FavoriteRepositoryItemReducer: Reducer {
-  public struct State: Equatable, Identifiable {
-    public var id: Int { repository.id }
+struct FavoriteRepositoryItemReducer: Reducer {
+  struct State: Equatable, Identifiable {
+    var id: Int { repository.id }
     let repository: Repository
     
     static func make(from item: GetFavoriteReposResponseItem) -> Self {

@@ -3,14 +3,14 @@ import Dependencies
 import Foundation
 
 @Reducer
-public struct GetFavoriteRepositoriesReducer {
-  public struct State: Equatable {
+struct GetFavoriteRepositoriesReducer {
+  struct State: Equatable {
     var items = IdentifiedArrayOf<FavoriteRepositoryItemReducer.State>()
     
-    public init() {}
+    init() {}
   }
   
-  public enum Action {
+  enum Action {
     case items(IdentifiedActionOf<FavoriteRepositoryItemReducer>)
     case getFavoriteReposResponse(Result<GetFavoriteReposResponse, Error>)
     case getFavoriteRepos
@@ -18,9 +18,9 @@ public struct GetFavoriteRepositoriesReducer {
   
   @Dependency(\.githubClient) var githubClient
   
-  public init() {}
+  init() {}
   
-  public var body: some ReducerOf<Self> {
+  var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
       case let .getFavoriteReposResponse(.success(response)):

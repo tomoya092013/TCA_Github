@@ -1,11 +1,11 @@
 import Foundation
 import APIKit
 
-public protocol BaseRequest: Request where Response: Decodable {
+protocol BaseRequest: Request where Response: Decodable {
   var decoder: JSONDecoder { get }
 }
 
-public extension BaseRequest {
+extension BaseRequest {
   func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
     guard 200..<300 ~= urlResponse.statusCode else {
       throw ApiError.unacceptableStatusCode(urlResponse.statusCode)

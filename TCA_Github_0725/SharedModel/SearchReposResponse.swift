@@ -1,10 +1,10 @@
 import Foundation
 
-public struct SearchReposResponse: Sendable, Decodable, Equatable {
-  public let totalCount: Int
-  public let items: [Item]
+struct SearchReposResponse: Sendable, Decodable, Equatable {
+  let totalCount: Int
+  let items: [Item]
   
-  public init(
+  init(
     totalCount: Int,
     items: [Item]
   ) {
@@ -17,15 +17,15 @@ public struct SearchReposResponse: Sendable, Decodable, Equatable {
     case items
   }
   
-  public struct Item: Sendable, Decodable, Equatable {
-    public let id: Int
-    public let name: String
-    public let fullName: String
-    public let owner: Owner
-    public let description: String?
-    public let stargazersCount: Int
+  struct Item: Sendable, Decodable, Equatable {
+    let id: Int
+    let name: String
+    let fullName: String
+    let owner: Owner
+    let description: String?
+    let stargazersCount: Int
     
-    public init(
+    init(
       id: Int,
       name: String,
       fullName: String,
@@ -51,11 +51,11 @@ public struct SearchReposResponse: Sendable, Decodable, Equatable {
     }
   }
   
-  public struct Owner: Sendable, Decodable, Equatable {
-    public let login: String
-    public let avatarUrl: URL
+  struct Owner: Sendable, Decodable, Equatable {
+    let login: String
+    let avatarUrl: URL
     
-    public init(
+    init(
       login: String,
       avatarUrl: URL
     ) {

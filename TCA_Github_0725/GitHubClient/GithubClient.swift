@@ -2,17 +2,17 @@ import Dependencies
 import DependenciesMacros
 
 @DependencyClient
-public struct GithubClient: Sendable {
-  public var searchRepos: @Sendable (_ query: String, _ page: Int) async throws -> SearchReposResponse
-  public var getFavoriteRepos: @Sendable () async throws -> GetFavoriteReposResponse
+struct GithubClient: Sendable {
+  var searchRepos: @Sendable (_ query: String, _ page: Int) async throws -> SearchReposResponse
+  var getFavoriteRepos: @Sendable () async throws -> GetFavoriteReposResponse
 }
 
 extension GithubClient: TestDependencyKey {
-  public static let testValue = Self()
-  public static let previewValue = Self()
+  static let testValue = Self()
+  static let previewValue = Self()
 }
 
-public extension DependencyValues {
+extension DependencyValues {
   var githubClient: GithubClient {
     get { self[GithubClient.self] }
     set { self[GithubClient.self] = newValue }

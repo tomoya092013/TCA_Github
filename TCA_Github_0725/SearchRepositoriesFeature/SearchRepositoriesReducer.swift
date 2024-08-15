@@ -3,9 +3,9 @@ import Dependencies
 import Foundation
 
 @Reducer
-public struct SearchRepositoriesReducer: Reducer, Sendable {
+struct SearchRepositoriesReducer: Reducer, Sendable {
   // MARK: - State
-  public struct State: Equatable {
+  struct State: Equatable {
     var items = IdentifiedArrayOf<RepositoryItemReducer.State>()
     @BindingState var showFavoritesOnly = false
     var currentPage = 1
@@ -21,7 +21,7 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
     var textFieldFeature: SearchTextFieldReducer.State = .init()
     var favoriteItems:SearchReposResponse?
     
-    public init() {}
+    init() {}
   }
   
   enum LoadingState: Equatable {
@@ -33,7 +33,7 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
   private enum CancelId { case searchRepos }
   
   // MARK: - Action
-  public enum Action: BindableAction, Sendable {
+  enum Action: BindableAction, Sendable {
     case binding(BindingAction<State>)
     case items(IdentifiedActionOf<RepositoryItemReducer>)
     case itemAppeared(id: Int)
@@ -46,10 +46,10 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
   // MARK: - Dependencies
   @Dependency(\.githubClient) var githubClient
   
-  public init() {}
+  init() {}
   
   // MARK: - Reducer
-  public var body: some ReducerOf<Self> {
+  var body: some ReducerOf<Self> {
     BindingReducer()
     Reduce { state, action in
       switch action {

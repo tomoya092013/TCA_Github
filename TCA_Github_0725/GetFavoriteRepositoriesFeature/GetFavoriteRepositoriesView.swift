@@ -4,11 +4,11 @@ import ComposableArchitecture
 struct GetFavoriteRepositoriesView: View {
   let store: StoreOf<GetFavoriteRepositoriesReducer>
   
-  public init(store: StoreOf<GetFavoriteRepositoriesReducer>) {
+  init(store: StoreOf<GetFavoriteRepositoriesReducer>) {
     self.store = store
   }
   
-  public var body: some View {
+  var body: some View {
     WithViewStore(store, observe: { $0 }) { viewStore in
       NavigationView {
         List {

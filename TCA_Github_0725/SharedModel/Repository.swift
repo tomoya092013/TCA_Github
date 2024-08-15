@@ -1,15 +1,15 @@
 import Foundation
 
-public struct Repository: Equatable, Sendable {
-  public let id: Int
-  public let name: String
-  public let avatarUrl: URL
-  public let description: String?
-  public let stars: Int
-  public let login: String
+struct Repository: Equatable, Sendable {
+  let id: Int
+  let name: String
+  let avatarUrl: URL
+  let description: String?
+  let stars: Int
+  let login: String
 }
 
-public extension Repository {
+extension Repository {
   init (from item: SearchReposResponse.Item) {
     self.id = item.id
     self.name = item.fullName
@@ -20,7 +20,7 @@ public extension Repository {
   }
 }
 
-public extension Repository {
+extension Repository {
   init (from item: GetFavoriteReposResponseItem) {
     self.id = item.id
     self.name = item.fullName
