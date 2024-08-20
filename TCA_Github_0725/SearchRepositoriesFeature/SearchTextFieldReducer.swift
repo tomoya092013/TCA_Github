@@ -1,12 +1,12 @@
 import ComposableArchitecture
 import Foundation
 
-public struct SearchTextFieldReducer: Reducer, Sendable {
-  public struct State: Equatable {
+struct SearchTextFieldReducer: Reducer, Sendable {
+  struct State: Equatable {
     @BindingState var text: String = ""
   }
   
-  public enum Action: BindableAction, Equatable, Sendable {
+  enum Action: BindableAction, Equatable, Sendable {
     // OUTPUT
     case search(text: String)
     // private
@@ -17,7 +17,7 @@ public struct SearchTextFieldReducer: Reducer, Sendable {
     case didTapSearchButton
   }
   
-  public var body: some ReducerOf<Self> {
+  var body: some ReducerOf<Self> {
     BindingReducer()
     Reduce { state, action in
       switch action {

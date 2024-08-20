@@ -3,14 +3,14 @@ import Dependencies
 import Foundation
 
 @Reducer
-public struct RepositoryDetailReducer: Reducer, Sendable {
+struct RepositoryDetailReducer: Reducer, Sendable {
   // MARK: - State
-  public struct State: Equatable, Sendable {
-    public var id: Int { repository.id }
-    public let repository: Repository
-    @BindingState public var liked = false
+  struct State: Equatable, Sendable {
+    var id: Int { repository.id }
+    let repository: Repository
+    @BindingState var liked = false
     
-    public init(
+    init(
       repository: Repository,
       liked: Bool
     ) {
@@ -19,17 +19,17 @@ public struct RepositoryDetailReducer: Reducer, Sendable {
     }
   }
   
-  public init() {}
+  init() {}
   
   // MARK: - Action
-  public enum Action: BindableAction, Sendable {
+  enum Action: BindableAction, Sendable {
     case binding(BindingAction<State>)
   }
   
   // MARK: - Dependencies
   
   // MARK: - Reducer
-  public var body: some ReducerOf<Self> {
+  var body: some ReducerOf<Self> {
     BindingReducer()
   }
 }

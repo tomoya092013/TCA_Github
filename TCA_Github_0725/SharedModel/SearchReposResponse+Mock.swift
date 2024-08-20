@@ -1,7 +1,7 @@
 #if DEBUG
 import Foundation
 
-public extension SearchReposResponse {
+extension SearchReposResponse {
   static func mock(totalCount: Int = 5) -> Self {
     .init(
       totalCount: totalCount,
@@ -47,7 +47,7 @@ public extension SearchReposResponse {
   }
 }
 
-public extension SearchReposResponse.Item {
+extension SearchReposResponse.Item {
   static func mock(id: Int, name: String) -> Self {
     .init(
       id: id,

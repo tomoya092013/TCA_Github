@@ -6,7 +6,7 @@ struct SearchReposRequest: GithubRequest {
   let path = "/search/repositories"
   let queryParameters: [String: Any]?
   
-  public init(
+  init(
     query: String,
     page: Int
   ) {

@@ -13,7 +13,9 @@ struct GithubApp: App {
           Label("Github", systemImage: "magnifyingglass")
         }.tag(1)
         
-        Text("GF")
+        GetFavoriteRepositoriesView(store: .init(initialState: .init()) {
+          GetFavoriteRepositoriesReducer()
+        })
           .tabItem{
             Label("GF", systemImage: "heart")
           }.tag(2)

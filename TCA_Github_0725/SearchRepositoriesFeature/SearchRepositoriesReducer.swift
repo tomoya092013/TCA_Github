@@ -3,9 +3,9 @@ import Dependencies
 import Foundation
 
 @Reducer
-public struct SearchRepositoriesReducer: Reducer, Sendable {
+struct SearchRepositoriesReducer: Reducer, Sendable {
   // MARK: - State
-  public struct State: Equatable {
+  struct State: Equatable {
     var items = IdentifiedArrayOf<RepositoryItemReducer.State>()
     @BindingState var showFavoritesOnly = false
     var currentPage = 1
@@ -21,7 +21,7 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
     var textFieldFeature: SearchTextFieldReducer.State = .init()
     var favoriteItems:SearchReposResponse?
     
-    public init() {}
+    init() {}
   }
   
   enum LoadingState: Equatable {
@@ -33,25 +33,23 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
   private enum CancelId { case searchRepos }
   
   // MARK: - Action
-  public enum Action: BindableAction, Sendable {
+  enum Action: BindableAction, Sendable {
     case binding(BindingAction<State>)
     case items(IdentifiedActionOf<RepositoryItemReducer>)
     case itemAppeared(id: Int)
     case searchReposResponse(Result<SearchReposResponse, Error>)
-    case searchFavoriteReposResponse(Result<SearchFavoriteReposResponse, Error>)
     case path(StackAction<RepositoryDetailReducer.State, RepositoryDetailReducer.Action>)
     case textFieldFeature(SearchTextFieldReducer.Action)
     case searchRepos(query: String, page: Int)
-    case searchFavoriteRepos
   }
   
   // MARK: - Dependencies
   @Dependency(\.githubClient) var githubClient
   
-  public init() {}
+  init() {}
   
   // MARK: - Reducer
-  public var body: some ReducerOf<Self> {
+  var body: some ReducerOf<Self> {
     BindingReducer()
     Reduce { state, action in
       switch action {
@@ -82,23 +80,6 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
         return .none
       case .textFieldFeature(_):
         return .none
-        
-      case let .searchFavoriteReposResponse(.success(response)):
-        switch state.loadingState {
-        case .refreshing:
-          state.items = .init(response: response)
-        case .loadingNext:
-          let newItems = IdentifiedArrayOf(response: response)
-          state.items.append(contentsOf: newItems)
-        case .none:
-          break
-        }
-        state.hasMorePage = response.totalCount > state.items.count
-        state.loadingState = .none
-        return .none
-      case .searchFavoriteReposResponse(.failure):
-        return .none
-        
       case let .searchReposResponse(.success(response)):
         switch state.loadingState {
         case .refreshing:
@@ -139,12 +120,6 @@ public struct SearchRepositoriesReducer: Reducer, Sendable {
         return .run { send in
           await send(.searchReposResponse(Result {
             try await githubClient.searchRepos(query: query, page: page)
-          }))
-        }
-      case .searchFavoriteRepos:
-        return .run { send in
-          await send(.searchFavoriteReposResponse(Result {
-            try await githubClient.searchFavoriteRepos()
           }))
         }
       }

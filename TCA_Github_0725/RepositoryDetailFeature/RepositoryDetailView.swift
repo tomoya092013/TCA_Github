@@ -1,14 +1,14 @@
 import SwiftUI
 import ComposableArchitecture
 
-public struct RepositoryDetailView: View {
+struct RepositoryDetailView: View {
   let store: StoreOf<RepositoryDetailReducer>
   
-  public init(store: StoreOf<RepositoryDetailReducer>) {
+  init(store: StoreOf<RepositoryDetailReducer>) {
     self.store = store
   }
   
-  public var body: some View {
+  var body: some View {
     WithViewStore(store, observe: { $0 }) { viewStore in
       Form {
         HStack {
