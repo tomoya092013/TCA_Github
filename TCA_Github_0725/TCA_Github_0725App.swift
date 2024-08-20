@@ -20,7 +20,9 @@ struct GithubApp: App {
             Label("GF", systemImage: "heart")
           }.tag(2)
         
-        Text("Qiita")
+        SearchArticlesView(store: .init(initialState: .init()) {
+          SearchArticlesReducer()
+        })
           .tabItem{
             Label("Qiita", systemImage: "magnifyingglass")
           }.tag(3)
