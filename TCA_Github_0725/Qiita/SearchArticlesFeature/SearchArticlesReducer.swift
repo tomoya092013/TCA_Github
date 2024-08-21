@@ -67,6 +67,7 @@ struct SearchArticlesReducer: Reducer, Sendable {
         state.items.removeAll()
         return .none
       case .textFieldFeature(.didTapClearTextButton):
+        state.hasMorePage = false
         state.searchText = ""
         return .none
       case .textFieldFeature(_):
@@ -82,21 +83,28 @@ struct SearchArticlesReducer: Reducer, Sendable {
         case .none:
           break
         }
-        //        state.hasMorePage = response.totalCount > state.items.count
-        state.loadingState = .none
+        if response.count != 0 {
+          state.hasMorePage = true
+        }
         return .none
       case .searchArticlesResponse(.failure):
         return .none
         
-      case let .itemAppeared(id: _id):
-        state.currentPage += 1
-        state.loadingState = .loadingNext
-        let searchText = state.searchText
-        let page = state.currentPage
-        let query = "title:\(searchText) body:\(searchText)"
-        return .run { send in
-          await send(.searchArticles(query: query, page: page))
-        }
+      case let .itemAppeared(id: id):
+        guard let lastItem = state.items.last else { return .none}
+          if state.hasMorePage, lastItem.id == id {
+            state.currentPage += 1
+            state.loadingState = .loadingNext
+            let searchText = state.searchText
+            let page = state.currentPage
+            let query = "title:\(searchText) body:\(searchText)"
+            return .run { send in
+              await send(.searchArticles(query: query, page: page))
+            }
+          } else {
+            return .none
+          }
+                
       case .items:
         return .none
       case let .searchArticles(query: query, page: page):
