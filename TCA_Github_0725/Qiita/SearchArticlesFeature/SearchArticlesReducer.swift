@@ -73,7 +73,7 @@ struct SearchArticlesReducer: Reducer, Sendable {
       case .textFieldFeature(_):
         return .none
       case let .searchArticlesResponse(.success(response)):
-        print(response)
+        state.hasMorePage = response.count < Confidential.perPage ? false : true
         switch state.loadingState {
         case .refreshing:
           state.items = .init(response: response)
@@ -82,9 +82,6 @@ struct SearchArticlesReducer: Reducer, Sendable {
           state.items.append(contentsOf: newItems)
         case .none:
           break
-        }
-        if response.count != 0 {
-          state.hasMorePage = true
         }
         return .none
       case .searchArticlesResponse(.failure):
