@@ -13,7 +13,7 @@ struct SearchArticlesRequest: QiitaRequest {
     self.queryParameters = [
       "query": query,
       "page": page.description,
-      "per_page":  Confidential.perPage
+      "per_page":  Constants.perPage
     ]
   }
 }

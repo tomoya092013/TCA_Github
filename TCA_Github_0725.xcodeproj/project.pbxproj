@@ -10,6 +10,7 @@
 		9F2A5F122C71683F0048AFA9 /* SearchArticleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A5F112C71683F0048AFA9 /* SearchArticleRequest.swift */; };
 		9F2A5F142C7178E90048AFA9 /* QiitaClient+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A5F132C7178E90048AFA9 /* QiitaClient+Live.swift */; };
 		9F2A5F162C717AD30048AFA9 /* QiitaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A5F152C717AD30048AFA9 /* QiitaRequest.swift */; };
+		9F2B364A2C7DD24300BE4FE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2B36492C7DD24300BE4FE7 /* Constants.swift */; };
 		9F5492092C6EA51800B5535B /* QiitaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5492082C6EA51800B5535B /* QiitaClient.swift */; };
 		9F6039EA2C51C00B00394530 /* TCA_Github_0725App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6039E92C51C00B00394530 /* TCA_Github_0725App.swift */; };
 		9F6039EE2C51C00E00394530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6039ED2C51C00E00394530 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		9F2A5F112C71683F0048AFA9 /* SearchArticleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticleRequest.swift; sourceTree = "<group>"; };
 		9F2A5F132C7178E90048AFA9 /* QiitaClient+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QiitaClient+Live.swift"; sourceTree = "<group>"; };
 		9F2A5F152C717AD30048AFA9 /* QiitaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaRequest.swift; sourceTree = "<group>"; };
+		9F2B36492C7DD24300BE4FE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F5492082C6EA51800B5535B /* QiitaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaClient.swift; sourceTree = "<group>"; };
 		9F6039E62C51C00B00394530 /* TCA_Github_0725.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA_Github_0725.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6039E92C51C00B00394530 /* TCA_Github_0725App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_Github_0725App.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				9F6039E92C51C00B00394530 /* TCA_Github_0725App.swift */,
 				9F6039ED2C51C00E00394530 /* Assets.xcassets */,
 				9F6039EF2C51C00E00394530 /* Preview Content */,
+				9F2B36492C7DD24300BE4FE7 /* Constants.swift */,
 			);
 			path = TCA_Github_0725;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				9FC1A8362C525E13000B3C92 /* SearchRepositoriesReducer.swift in Sources */,
 				9FC1A82A2C525D5D000B3C92 /* SearchReposRequest.swift in Sources */,
 				9F839A852C7017B30080D125 /* SearchArticleResponse.swift in Sources */,
+				9F2B364A2C7DD24300BE4FE7 /* Constants.swift in Sources */,
 				9F839A7D2C700CCC0080D125 /* SearchArticlesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
