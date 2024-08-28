@@ -25,13 +25,13 @@ struct SearchArticlesReducer: Reducer, Sendable {
   private enum CancelId { case searchArticles }
   
   // MARK: - Action
-  enum Action: BindableAction, Sendable {
-    case binding(BindingAction<State>)
+  enum Action: Sendable {
     case items(IdentifiedActionOf<ArticleItemReducer>)
     case itemAppeared(id: String)
     case searchArticlesResponse(Result<SearchArticlesResponse, Error>)
     case textFieldFeature(SearchTextFieldReducer.Action)
     case searchArticles(query: String, page: Int)
+    case stockArticleResponse(Result<StockArticleResponse, Error>)
   }
   
   // MARK: - Dependencies
@@ -41,12 +41,8 @@ struct SearchArticlesReducer: Reducer, Sendable {
   
   // MARK: - Reducer
   var body: some ReducerOf<Self> {
-    BindingReducer()
     Reduce { state, action in
       switch action {
-      case .binding(_):
-        return .none
-        
       case let .textFieldFeature(.search(text: text)):
         guard !text.isEmpty else {
           state.hasMorePage = false
@@ -86,30 +82,39 @@ struct SearchArticlesReducer: Reducer, Sendable {
         return .none
       case .searchArticlesResponse(.failure):
         return .none
-        
       case let .itemAppeared(id: id):
         guard let lastItem = state.items.last else { return .none}
-          if state.hasMorePage, lastItem.id == id {
-            state.currentPage += 1
-            state.loadingState = .loadingNext
-            let searchText = state.searchText
-            let page = state.currentPage
-            let query = "title:\(searchText) body:\(searchText)"
-            return .run { send in
-              await send(.searchArticles(query: query, page: page))
-            }
-          } else {
-            return .none
+        if state.hasMorePage, lastItem.id == id {
+          state.currentPage += 1
+          state.loadingState = .loadingNext
+          let searchText = state.searchText
+          let page = state.currentPage
+          let query = "title:\(searchText) body:\(searchText)"
+          return .run { send in
+            await send(.searchArticles(query: query, page: page))
           }
-                
-      case .items:
-        return .none
+        } else {
+          return .none
+        }
       case let .searchArticles(query: query, page: page):
         return .run { send in
           await send(.searchArticlesResponse(Result {
             try await qiitaClient.searchArticles(query: query, page: page)
           }))
         }
+        
+      case let .items(.element(id: id, action: .didTapStockButton)):
+        return .run { send in
+          await send(.stockArticleResponse(Result {
+            try await qiitaClient.stockArticle(id: id)
+          }))
+        }
+      case let .stockArticleResponse(.success(response)):
+        return .none
+      case let .stockArticleResponse(.failure(response)):
+        return .none
+      case .items:
+        return .none
       }
     }
     .forEach(\.items, action: \.items) {
@@ -120,4 +125,3 @@ struct SearchArticlesReducer: Reducer, Sendable {
     }
   }
 }
-

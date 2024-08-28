@@ -28,6 +28,15 @@ struct ArticleItemView: View {
           }
           Text(viewStore.article.updatedAt)
             .font(.system(size: 14))
+          Button {
+            viewStore.send(.didTapStockButton)
+          } label: {
+            Image(systemName: viewStore.liked ? "heart.fill" : "heart")
+              .resizable()
+              .frame(width: 20, height: 20)
+              .foregroundStyle(Color.pink)
+          }
+          .buttonStyle(.plain)
         }
       }
     }

@@ -7,6 +7,9 @@ extension QiitaClient: DependencyKey {
     .init(
       searchArticles: { query, page in
         try await apiClient.send(request: SearchArticlesRequest(query: query, page: page))
+      },
+      stockArticle: { id in
+        try await apiClient.send(request: StockArticleRequest(id: id))
       }
     )
   }
