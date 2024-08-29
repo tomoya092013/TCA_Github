@@ -15,15 +15,24 @@ struct ArticleItemReducer: Reducer, Sendable {
   }
   
   enum Action: Equatable, Sendable {
+		// OUTPUT
+    case stock(id: String)
+    // private
     case didTapStockButton
   }
   
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
+      case .stock(_):
+        return .none
       case .didTapStockButton:
         state.liked.toggle()
-        return .none
+        print("ArticleItemReducer")
+        let stockId = state.id
+        return .run { send in
+          await send((.stock(id: stockId)))
+        }
       }
     }
   }

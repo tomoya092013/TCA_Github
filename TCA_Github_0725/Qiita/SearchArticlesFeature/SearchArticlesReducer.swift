@@ -12,6 +12,7 @@ struct SearchArticlesReducer: Reducer, Sendable {
     var currentPage = 1
     var loadingState: LoadingState = .refreshing
     var hasMorePage = false
+//    var stockArticleFeature: ArticleItemReducer.State
     
     init() {}
   }
@@ -32,6 +33,7 @@ struct SearchArticlesReducer: Reducer, Sendable {
     case textFieldFeature(SearchTextFieldReducer.Action)
     case searchArticles(query: String, page: Int)
     case stockArticleResponse(Result<StockArticleResponse, Error>)
+    case stockArticleFeature(ArticleItemReducer.Action)
   }
   
   // MARK: - Dependencies
@@ -103,15 +105,14 @@ struct SearchArticlesReducer: Reducer, Sendable {
           }))
         }
         
-      case let .items(.element(id: id, action: .didTapStockButton)):
-        return .run { send in
-          await send(.stockArticleResponse(Result {
-            try await qiitaClient.stockArticle(id: id)
-          }))
-        }
-      case let .stockArticleResponse(.success(response)):
+      case let .stockArticleFeature(.stock(id: id)):
+        print("SearchArticlesReducer",id)
         return .none
-      case let .stockArticleResponse(.failure(response)):
+      case .stockArticleFeature(_):
+        return .none
+      case .stockArticleResponse(.success(_)):
+        return .none
+      case .stockArticleResponse(.failure(_)):
         return .none
       case .items:
         return .none
