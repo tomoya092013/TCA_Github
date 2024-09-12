@@ -33,7 +33,7 @@ struct SearchArticlesReducer: Reducer, Sendable {
     case textFieldFeature(SearchTextFieldReducer.Action)
     case searchArticles(query: String, page: Int)
     case stockArticleResponse(Result<StockArticleResponse, Error>)
-    case stockArticleFeature(ArticleItemReducer.Action)
+    // case stockArticleFeature(ArticleItemReducer.Action)
   }
   
   // MARK: - Dependencies
@@ -105,11 +105,12 @@ struct SearchArticlesReducer: Reducer, Sendable {
           }))
         }
         
-      case let .stockArticleFeature(.stock(id: id)):
+      // case let .stockArticleFeature(.stock(id: id)):
+      case let .items(.element(id: id, action: .stock(id: articleid))):
         print("SearchArticlesReducer",id)
         return .none
-      case .stockArticleFeature(_):
-        return .none
+      // case .stockArticleFeature(_):
+        // return .none
       case .stockArticleResponse(.success(_)):
         return .none
       case .stockArticleResponse(.failure(_)):
