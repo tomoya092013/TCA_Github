@@ -22,7 +22,6 @@
 		9F839A812C700D220080D125 /* ArticleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F839A802C700D220080D125 /* ArticleItemView.swift */; };
 		9F839A832C7017250080D125 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F839A822C7017250080D125 /* Article.swift */; };
 		9F839A852C7017B30080D125 /* SearchArticleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F839A842C7017B30080D125 /* SearchArticleResponse.swift */; };
-		9FC1A8162C525B3C000B3C92 /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC1A8152C525B3C000B3C92 /* APIKit */; };
 		9FC1A8192C525C5B000B3C92 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A8182C525C5B000B3C92 /* ApiClient.swift */; };
 		9FC1A81B2C525C7C000B3C92 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A81A2C525C7C000B3C92 /* BaseRequest.swift */; };
 		9FC1A81E2C525CB0000B3C92 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A81D2C525CB0000B3C92 /* GithubClient.swift */; };
@@ -48,6 +47,8 @@
 		9FC1A84C2C53CFA2000B3C92 /* GetFavoriteRepositoriesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A84B2C53CFA2000B3C92 /* GetFavoriteRepositoriesReducer.swift */; };
 		9FC1A84E2C53D3E6000B3C92 /* FavoriteRepositoryItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A84D2C53D3E6000B3C92 /* FavoriteRepositoryItemReducer.swift */; };
 		9FC1A8502C53D3FB000B3C92 /* FavoriteRepositoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1A84F2C53D3FB000B3C92 /* FavoriteRepositoryItemView.swift */; };
+		9FDC651F2C795DBA009C79A2 /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FDC651E2C795DBA009C79A2 /* APIKit */; };
+		9FE787412C777D31006E8921 /* StockArticleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE787402C777D31006E8921 /* StockArticleRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		9FC1A84B2C53CFA2000B3C92 /* GetFavoriteRepositoriesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavoriteRepositoriesReducer.swift; sourceTree = "<group>"; };
 		9FC1A84D2C53D3E6000B3C92 /* FavoriteRepositoryItemReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryItemReducer.swift; sourceTree = "<group>"; };
 		9FC1A84F2C53D3FB000B3C92 /* FavoriteRepositoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryItemView.swift; sourceTree = "<group>"; };
+		9FDC651C2C795CB1009C79A2 /* TCA-Github-0725-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TCA-Github-0725-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9FE787402C777D31006E8921 /* StockArticleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockArticleRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC1A8162C525B3C000B3C92 /* APIKit in Frameworks */,
+				9FDC651F2C795DBA009C79A2 /* APIKit in Frameworks */,
 				9F6039F92C51C21600394530 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +123,7 @@
 				9F2A5F132C7178E90048AFA9 /* QiitaClient+Live.swift */,
 				9F2A5F112C71683F0048AFA9 /* SearchArticleRequest.swift */,
 				9F2A5F152C717AD30048AFA9 /* QiitaRequest.swift */,
+				9FE787402C777D31006E8921 /* StockArticleRequest.swift */,
 			);
 			path = QiitaClientLive;
 			sourceTree = "<group>";
@@ -144,6 +148,7 @@
 		9F6039E82C51C00B00394530 /* TCA_Github_0725 */ = {
 			isa = PBXGroup;
 			children = (
+				9FDC651C2C795CB1009C79A2 /* TCA-Github-0725-Info.plist */,
 				9FC3BD132C74DA1400A54F3F /* SearchTextFieldFeature */,
 				9F839A772C700B570080D125 /* Qiita */,
 				9FC1A8482C53CEE9000B3C92 /* GetFavoriteRepositoriesFeature */,
@@ -298,7 +303,7 @@
 			name = TCA_Github_0725;
 			packageProductDependencies = (
 				9F6039F82C51C21600394530 /* ComposableArchitecture */,
-				9FC1A8152C525B3C000B3C92 /* APIKit */,
+				9FDC651E2C795DBA009C79A2 /* APIKit */,
 			);
 			productName = TCA_Github_0725;
 			productReference = 9F6039E62C51C00B00394530 /* TCA_Github_0725.app */;
@@ -330,7 +335,7 @@
 			mainGroup = 9F6039DD2C51C00B00394530;
 			packageReferences = (
 				9F6039F72C51C21600394530 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				9FC1A8142C525B3C000B3C92 /* XCRemoteSwiftPackageReference "APIKit" */,
+				9FDC651D2C795DBA009C79A2 /* XCRemoteSwiftPackageReference "APIKit" */,
 			);
 			productRefGroup = 9F6039E72C51C00B00394530 /* Products */;
 			projectDirPath = "";
@@ -381,6 +386,7 @@
 				9FC1A84E2C53D3E6000B3C92 /* FavoriteRepositoryItemReducer.swift in Sources */,
 				9F839A812C700D220080D125 /* ArticleItemView.swift in Sources */,
 				9F839A7F2C700D0D0080D125 /* ArticleItemReducer.swift in Sources */,
+				9FE787412C777D31006E8921 /* StockArticleRequest.swift in Sources */,
 				9F6039EA2C51C00B00394530 /* TCA_Github_0725App.swift in Sources */,
 				9F2A5F142C7178E90048AFA9 /* QiitaClient+Live.swift in Sources */,
 				9FC1A8502C53D3FB000B3C92 /* FavoriteRepositoryItemView.swift in Sources */,
@@ -530,6 +536,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TCA_Github_0725/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TCA-Github-0725-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +565,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TCA_Github_0725/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TCA-Github-0725-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -608,7 +616,7 @@
 				minimumVersion = 1.12.1;
 			};
 		};
-		9FC1A8142C525B3C000B3C92 /* XCRemoteSwiftPackageReference "APIKit" */ = {
+		9FDC651D2C795DBA009C79A2 /* XCRemoteSwiftPackageReference "APIKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ishkawa/APIKit.git";
 			requirement = {
@@ -624,9 +632,9 @@
 			package = 9F6039F72C51C21600394530 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		9FC1A8152C525B3C000B3C92 /* APIKit */ = {
+		9FDC651E2C795DBA009C79A2 /* APIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9FC1A8142C525B3C000B3C92 /* XCRemoteSwiftPackageReference "APIKit" */;
+			package = 9FDC651D2C795DBA009C79A2 /* XCRemoteSwiftPackageReference "APIKit" */;
 			productName = APIKit;
 		};
 /* End XCSwiftPackageProductDependency section */

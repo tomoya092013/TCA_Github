@@ -3,7 +3,7 @@ import ComposableArchitecture
 
 struct SearchArticlesView: View {
   let store: StoreOf<SearchArticlesReducer>
-
+  
   struct ViewState: Equatable {
     let hasMorePage: Bool
     
@@ -12,16 +12,12 @@ struct SearchArticlesView: View {
     }
   }
   
-  init(store: StoreOf<SearchArticlesReducer>) {
-    self.store = store
-  }
-  
   var body: some View {
-    WithViewStore(store, observe: ViewState.init(store:)) { viewStore in
+    WithViewStore(store, observe: { $0 }) { viewStore in
       VStack {
-       SearchTextFieldView(
-        store: self.store.scope(state: \.textFieldFeature, action: SearchArticlesReducer.Action.textFieldFeature)
-       )
+        SearchTextFieldView(
+          store: self.store.scope(state: \.textFieldFeature, action: \.textFieldFeature)
+        )
         List {
           ForEachStore(store.scope(state: \.items, action: \.items)) { itemStore in
             ArticleItemView(store: itemStore)
